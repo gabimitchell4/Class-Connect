@@ -1,20 +1,22 @@
 // src/App.tsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./Login";
-import Survey from "./Survey";
-import Activity from "./Activity";
-import Filter from "./Filter";
-import Event from "./Event";
-import Social from "./Social";
-import UpcomingEvents from "./UpcomingEvents";
-import Rewards from "./Rewards";
-import NavBar from "./NavBar";
+import Login from "./Login.tsx";
+import Survey from "./Survey.tsx";
+import Activity from "./Activity.tsx";
+import Filter from "./Filter.tsx";
+import Event from "./Event.tsx";
+import Social from "./Social.tsx";
+import UpcomingEvents from "./UpcomingEvents.tsx";
+import Rewards from "./Rewards.tsx";
+import NavBar from "./NavBar.tsx";
 
 const App: React.FC = () => {
   return (
     <Router>
       <NavBar />
+      <Filter />
+      <Event />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/survey" element={<Survey />} />

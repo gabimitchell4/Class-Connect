@@ -1,0 +1,58 @@
+/* src/components/Filter.css */
+
+/* Style for the filter panel */
+.filter-panel {
+    position: fixed;
+    top: 0;
+    left: 140px; /* Adjust this value based on the width of your navbar */
+    width: 250px;
+    height: 100%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+  
+  .filter-panel h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .filter-item {
+    margin-bottom: 20px;
+  }
+  
+  .filter-item label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
+  .filter-item input[type="range"],
+  .filter-item select {
+    width: 100%;
+  }
+  
+  .filter-item span {
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+  }
+  
+  .filter-item select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .filter-item input[type="range"] {
+    width: 100%;
+    margin-top: 5px;
+  }
+  
+  .filter-item input[type="range"]::-webkit-slider-thumb {
+    background-color: #4CAF50;
+  }
+  

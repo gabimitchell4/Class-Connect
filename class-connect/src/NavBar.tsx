@@ -1,21 +1,33 @@
 // src/components/NavBar.tsx
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaCalendarAlt, FaGift, FaClipboardList } from "react-icons/fa";
+import './NavBar.css'; // Import the CSS file
 
 const NavBar: React.FC = () => {
   return (
-    <nav>
+    <div className="navbar">
       <ul>
-        <li><Link to="/">Login</Link></li>
-        <li><Link to="/survey">Survey</Link></li>
-        <li><Link to="/activity">Activity</Link></li>
-        <li><Link to="/filter">Filter</Link></li>
-        <li><Link to="/event">Event</Link></li>
-        <li><Link to="/social">Social</Link></li>
-        <li><Link to="/upcoming-events">Upcoming Events</Link></li>
-        <li><Link to="/rewards">Rewards</Link></li>
+        <li>
+          <Link to="/event">
+            <FaCalendarAlt className="icon" />
+            Events
+          </Link>
+        </li>
+        <li>
+          <Link to="/rewards">
+            <FaGift className="icon" />
+            Rewards
+          </Link>
+        </li>
+        <li>
+          <Link to="/upcoming-events">
+            <FaClipboardList className="icon" />
+            Upcoming Events
+          </Link>
+        </li>
       </ul>
-    </nav>
+    </div>
   );
 };
 

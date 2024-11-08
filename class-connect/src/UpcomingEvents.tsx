@@ -1,7 +1,7 @@
-// src/pages/UpcomingEvents.js
+// src/pages/UpcomingEvents.tsx
 import React from "react";
 
-function UpcomingEvents() {
+const UpcomingEvents: React.FC = () => {
   return (
     <div>
       <h1>Upcoming Events</h1>
@@ -9,6 +9,6 @@ function UpcomingEvents() {
       {/* Add upcoming events list here */}
     </div>
   );
-}
+};
 
 export default UpcomingEvents;

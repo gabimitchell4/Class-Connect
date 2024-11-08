@@ -1,4 +1,4 @@
-// src/App.js
+// src/App.tsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Login";
@@ -11,7 +11,7 @@ import UpcomingEvents from "./UpcomingEvents";
 import Rewards from "./Rewards";
 import NavBar from "./NavBar";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <NavBar />
@@ -27,6 +27,6 @@ function App() {
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;

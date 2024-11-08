@@ -1,7 +1,7 @@
-// src/pages/Rewards.js
+// src/pages/Rewards.tsx
 import React from "react";
 
-function Rewards() {
+const Rewards: React.FC = () => {
   return (
     <div>
       <h1>Rewards Page</h1>
@@ -9,6 +9,6 @@ function Rewards() {
       {/* Add rewards info here */}
     </div>
   );
-}
+};
 
 export default Rewards;

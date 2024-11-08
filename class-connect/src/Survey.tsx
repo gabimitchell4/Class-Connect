@@ -1,7 +1,7 @@
-// src/pages/Survey.js
+// src/pages/Survey.tsx
 import React from "react";
 
-function Survey() {
+const Survey: React.FC = () => {
   return (
     <div>
       <h1>Survey Page</h1>
@@ -9,6 +9,6 @@ function Survey() {
       {/* Add survey questions here */}
     </div>
   );
-}
+};
 
 export default Survey;

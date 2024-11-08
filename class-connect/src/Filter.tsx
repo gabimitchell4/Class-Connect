@@ -1,7 +1,7 @@
 // src/pages/Filter.js
 import React from "react";
 
-function Filter() {
+const Filter: React.FC = () =>  {
   return (
     <div>
       <h1>Filter Page</h1>

@@ -1,7 +1,7 @@
-// src/pages/Social.js
+// src/pages/Social.tsx
 import React from "react";
 
-function Social() {
+const Social: React.FC = () => {
   return (
     <div>
       <h1>Social Page</h1>
@@ -9,6 +9,6 @@ function Social() {
       {/* Add social features here */}
     </div>
   );
-}
+};
 
 export default Social;

@@ -1,7 +1,7 @@
-// src/pages/Activity.js
+// src/pages/Activity.tsx
 import React from "react";
 
-function Activity() {
+const Activity: React.FC = () => {
   return (
     <div>
       <h1>Activity Page</h1>
@@ -9,6 +9,6 @@ function Activity() {
       {/* Add activity feed here */}
     </div>
   );
-}
+};
 
 export default Activity;

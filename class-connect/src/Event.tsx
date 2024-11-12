@@ -1,6 +1,7 @@
-// src/pages/Event.tsx
 import React, { useState } from "react";
 import { FaSpa, FaDumbbell, FaPizzaSlice, FaRunning } from "react-icons/fa";
+import { Link } from "react-router-dom"; // Import Link for navigation
+import Filter from "./Filter.tsx"; // Import Filter here
 import "./Event.css";
 
 const events = [
@@ -17,12 +18,16 @@ const events = [
 const Event: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Filter events based on the search term
   const filteredEvents = events.filter((event) =>
     event.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div className="event-container">
+      {/* Filter Component will be displayed in the Event component */}
+      <Filter />
+
       <div className="header">
         <h1>Events</h1>
 
@@ -39,10 +44,10 @@ const Event: React.FC = () => {
       <h2>For You</h2>
       <div className="event-row">
         {filteredEvents.slice(0, 4).map((event) => (
-          <div key={event.id} className="event-card">
+          <Link key={event.id} to={`/events/${event.id}`} className="event-card">
             <div className="event-icon">{event.icon}</div>
             <p className="event-title">{event.title}</p>
-          </div>
+          </Link>
         ))}
       </div>
 

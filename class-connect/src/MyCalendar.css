@@ -20,7 +20,7 @@
 .events-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap; /* Allows wrapping if items overflow */
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -87,8 +87,11 @@
 }
 
 .calendar-container {
-  width: 700px;
-  height: 600px;
+  max-width: 600px;
+  min-width: 500px;
+  height: 400px;
+  margin-top: 50px;
+  flex-direction: column;
   background: linear-gradient(135deg, #ffffff, #f9f9f9);
   border-radius: 15px;
   justify-content: center;

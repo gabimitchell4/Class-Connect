@@ -10,7 +10,7 @@ const signedUpEvents = [
     id: 1,
     title: "Yoga",
     icon: <FaSpa />,
-    date: "2024-11-15",
+    date: "2024-11-26",
     startTime: "8:00 AM",
     endTime: "9:00 AM",
     paired: true,
@@ -33,7 +33,7 @@ const signedUpEvents = [
     id: 3,
     title: "Pilates",
     icon: <FaRunning />,
-    date: "2024-11-17",
+    date: "2024-12-01",
     startTime: "11:30 AM",
     endTime: "12:30 PM",
     paired: true,
@@ -47,7 +47,7 @@ const signedUpEvents = [
     id: 4,
     title: "Cooking Class",
     icon: <FaPizzaSlice />,
-    date: "2024-11-18",
+    date: "2024-11-29",
     startTime: "2:00 PM",
     endTime: "4:00 PM",
     paired: false,
@@ -56,7 +56,7 @@ const signedUpEvents = [
     id: 5,
     title: "Zumba",
     icon: <FaDumbbell />,
-    date: "2024-11-19",
+    date: "2024-11-29",
     startTime: "5:00 PM",
     endTime: "6:00 PM",
     paired: true,
@@ -70,7 +70,7 @@ const signedUpEvents = [
     id: 6,
     title: "Meditation",
     icon: <FaSpa />,
-    date: "2024-11-20",
+    date: "2024-11-18",
     startTime: "7:00 PM",
     endTime: "8:00 PM",
     paired: false,
@@ -104,7 +104,15 @@ const MyCalendar = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    const formattedDate = date.toISOString().split("T")[0];
+    if (
+      selectedDate &&
+      formattedDate === selectedDate.toISOString().split("T")[0]
+    ) {
+      setSelectedDate(null);
+    } else {
+      setSelectedDate(date);
+    }
   };
 
   const formatDate = (date) => date.toISOString().split("T")[0];
@@ -113,12 +121,20 @@ const MyCalendar = () => {
     ? signedUpEvents.filter((event) => event.date === formatDate(selectedDate))
     : signedUpEvents;
 
+  const isEventDate = (date) => {
+    const formattedDate = formatDate(date);
+    return signedUpEvents.some((event) => event.date === formattedDate);
+  };
+
   return (
     <div className="my-calendar-page">
       <div className="content">
-        <div className="calendar-container">
-          <Calendar className="calendar-container" onChange={handleDateChange} value={selectedDate} />
-        </div>
+        <Calendar
+          className="calendar-container"
+          onChange={handleDateChange}
+          value={selectedDate}
+          tileDisabled={({ date }) => !isEventDate(date)}
+        />
         <div>
           <h2>
             Events for {selectedDate ? selectedDate.toString() : "X/X/2024"}

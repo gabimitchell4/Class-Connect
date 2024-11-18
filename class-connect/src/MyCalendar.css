@@ -1,0 +1,98 @@
+/* MyCalendar.css */
+
+/* Page layout */
+.my-calendar-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  margin-left: 120px; /* Space for the filter panel */
+}
+/* Content styling */
+.content {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  gap: 30px;
+}
+
+/* Events container */
+.events-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Allows wrapping if items overflow */
+  gap: 20px;
+}
+
+.events-container h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Individual event card */
+.event-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  transition: background-color 0.2s;
+}
+
+.event-card:hover {
+  background-color: #f1f1f1;
+}
+
+/* Circle indicator for events */
+.event-circle {
+  width: 10px;
+  height: 10px;
+  background-color: #ff6b6b;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.event-info {
+  flex: 1;
+}
+
+.event-time {
+  font-size: 12px;
+  color: #888;
+}
+
+.event-title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* View pairing button */
+.view-pairing-button {
+  font-size: 12px;
+  color: #666;
+  background-color: #e0e0e0;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.view-pairing-button:hover {
+  background-color: #ccc;
+}
+
+.calendar-container {
+  width: 700px;
+  height: 600px;
+  background: linear-gradient(135deg, #ffffff, #f9f9f9);
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border:  #e0e0e0;
+}

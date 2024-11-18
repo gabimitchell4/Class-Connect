@@ -6,10 +6,10 @@ import Survey from "./Survey.tsx";
 import Activity from "./Activity.tsx";
 import Event from "./Event.tsx";
 import Social from "./Social.tsx";
-import UpcomingEvents from "./UpcomingEvents.tsx";
 import Rewards from "./Rewards.tsx";
 import NavBar from "./NavBar.tsx";
 import EventDetails from "./EventDetails.tsx";
+import MyCalendar from "./MyCalendar.tsx";
 
 const App: React.FC = () => {
   return (
@@ -22,7 +22,7 @@ const App: React.FC = () => {
         <Route path="/event" element={<Event />} />
         <Route path="/events/:id" element={<EventDetails />} />
         <Route path="/social" element={<Social />} />
-        <Route path="/upcoming-events" element={<UpcomingEvents />} />
+        <Route path="/upcoming-events" element={<MyCalendar />} />
         <Route path="/rewards" element={<Rewards />} />
       </Routes>
     </Router>

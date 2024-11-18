@@ -1,11 +1,28 @@
 // src/pages/UpcomingEvents.tsx
-import React, { useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { FaSpa, FaDumbbell, FaPizzaSlice, FaRunning } from "react-icons/fa";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./MyCalendar.css";
 
-const signedUpEvents = [
+type Pair = {
+  name: string;
+  age: number;
+  gender: string;
+  hobbies: string[];
+};
+
+type Event = {
+  id: number;
+  title: string;
+  icon: ReactNode;
+  date: string;
+  startTime: string;
+  endTime: string;
+  paired: boolean;
+  pair?: Pair;
+};
+const signedUpEvents: Event[] = [
   {
     id: 1,
     title: "Yoga",
@@ -17,6 +34,7 @@ const signedUpEvents = [
     pair: {
       name: "Alex Johnson",
       gender: "Male",
+      age: 31,
       hobbies: ["Photography", "Hiking", "Meditation"],
     },
   },
@@ -40,6 +58,7 @@ const signedUpEvents = [
     pair: {
       name: "Sarah Lee",
       gender: "Female",
+      age: 25,
       hobbies: ["Yoga", "Cooking", "Reading"],
     },
   },
@@ -63,6 +82,7 @@ const signedUpEvents = [
     pair: {
       name: "Daniel Kim",
       gender: "Male",
+      age: 26,
       hobbies: ["Dancing", "Fitness", "Traveling"],
     },
   },
@@ -86,6 +106,7 @@ const signedUpEvents = [
     pair: {
       name: "Emily Chen",
       gender: "Female",
+      age: 28,
       hobbies: ["Weightlifting", "Running", "Nutrition"],
     },
   },
@@ -102,6 +123,8 @@ const signedUpEvents = [
 
 const MyCalendar = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedPair, setSelectedPair] = useState<Pair | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
 
   const handleDateChange = (date) => {
     const formattedDate = date.toISOString().split("T")[0];
@@ -113,7 +136,23 @@ const MyCalendar = () => {
     } else {
       setSelectedDate(date);
     }
+    setSelectedPair(null);
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    console.log(event.target);
+    console.log(cardRef.current);
+    if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
+      setSelectedPair(null);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const formatDate = (date) => date.toISOString().split("T")[0];
 
@@ -150,13 +189,34 @@ const MyCalendar = () => {
                     </p>
                     <p className="event-title">{event.title}</p>
                   </div>
-                  <button className="view-pairing-button">View Pairing</button>
+                  {event.paired && (
+                    <button
+                      className="view-pairing-button"
+                      onClick={() => event.pair && setSelectedPair(event?.pair)}
+                    >
+                      View Pairing
+                    </button>
+                  )}
                 </div>
               ))
             ) : (
               <p>No events for this date.</p>
             )}
           </div>
+          {selectedPair && (
+            <div>
+              <h2>Pairing</h2>
+              <div className="event-card" ref={cardRef}>
+                <h3 className="event-title">{selectedPair?.name}</h3>
+                <div className="pair-text">Age: {selectedPair?.age}</div>
+                <div className="pair-text">Gender: {selectedPair?.gender}</div>
+                <div className="pair-text">
+                  Hobbies: {selectedPair?.hobbies.join(", ")}
+                </div>
+                <button className="view-pairing-button">Chat</button>
+              </div>
+            </div>
+          )}
         </div>
       </div>{" "}
     </div>

@@ -1,27 +1,16 @@
 // src/pages/UpcomingEvents.tsx
-import React, { ReactNode, useEffect, useRef, useState } from "react";
-import { FaSpa, FaDumbbell, FaPizzaSlice, FaRunning } from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
+import { Event, Pair } from "./types";
+import {
+  FaSpa,
+  FaDumbbell,
+  FaPizzaSlice,
+  FaRunning,
+  FaUser,
+} from "react-icons/fa";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./MyCalendar.css";
-
-type Pair = {
-  name: string;
-  age: number;
-  gender: string;
-  hobbies: string[];
-};
-
-type Event = {
-  id: number;
-  title: string;
-  icon: ReactNode;
-  date: string;
-  startTime: string;
-  endTime: string;
-  pair?: Pair;
-  location: string;
-};
 
 const signedUpEvents: Event[] = [
   {
@@ -128,8 +117,12 @@ const MyCalendar = () => {
   const cardRef = useRef<HTMLDivElement | null>(null);
 
   const handleDateChange = (date) => {
-    setSelectedDate(date);
-    setSelectedPair(null);
+    if (selectedDate?.getTime() === date.getTime()) {
+      setSelectedDate(null);
+    } else {
+      setSelectedDate(date);
+      setSelectedPair(null);
+    }
   };
 
   const formatDate = (date: Date) => date.toISOString().split("T")[0];
@@ -137,7 +130,6 @@ const MyCalendar = () => {
   const eventsForSelectedDate = selectedDate
     ? signedUpEvents.filter((event) => event.date === formatDate(selectedDate))
     : signedUpEvents;
-  console.log(selectedDate);
 
   const isEventDate = (date: Date) => {
     const formattedDate = formatDate(date);
@@ -216,7 +208,9 @@ const MyCalendar = () => {
       </div>
       {selectedPair && (
         <div className="pairing-card" ref={cardRef}>
-          <div className="profile-icon"></div>
+          <div className="profile-icon">
+            <FaUser />
+          </div>
           <h3>{selectedPair?.name}</h3>
           <p>Age: {selectedPair?.age}</p>
           <p>

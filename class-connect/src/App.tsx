@@ -1,6 +1,6 @@
 // src/App.tsx
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Login from "./Login.tsx";
 import Survey from "./Survey.tsx";
 import Activity from "./Activity.tsx";
@@ -12,9 +12,15 @@ import EventDetails from "./EventDetails.tsx";
 import MyCalendar from "./MyCalendar.tsx";
 
 const App: React.FC = () => {
+  const location = useLocation(); // Hook to get the current location
+
+  // Check if the current route is the login page
+  const isLoginPage = location.pathname === "/";
+
   return (
-    <Router>
-      <NavBar />
+    <>
+      {/* Render the NavBar unless it's the login page */}
+      {!isLoginPage && <NavBar />}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/survey" element={<Survey />} />
@@ -25,8 +31,14 @@ const App: React.FC = () => {
         <Route path="/upcoming-events" element={<MyCalendar />} />
         <Route path="/rewards" element={<Rewards />} />
       </Routes>
-    </Router>
+    </>
   );
 };
 
-export default App;
+const AppWrapper: React.FC = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default AppWrapper;

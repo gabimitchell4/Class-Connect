@@ -176,7 +176,7 @@ const MyCalendar = () => {
         />
         <div>
           <h2>
-            Events for {selectedDate ? formatDate(selectedDate) : "X-X-2024"}
+            Events for {selectedDate ? formatDate(selectedDate) : "2024-X-X"}
           </h2>
           <div className="events-container">
             {eventsForSelectedDate.length > 0 ? (

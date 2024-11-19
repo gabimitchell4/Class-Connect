@@ -23,7 +23,7 @@ const NavBar: React.FC = () => {
         <li>
           <Link to="/upcoming-events">
             <FaClipboardList className="icon" />
-            My Calander
+            My Calender
           </Link>
         </li>
       </ul>

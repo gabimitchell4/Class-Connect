@@ -4,7 +4,7 @@
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    margin-left: 450px; /* Space for the filter panel */
+    margin-left: 400px; /* Space for the filter panel */
   }
   
   h1 {

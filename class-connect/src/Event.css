@@ -1,79 +1,65 @@
-/* src/pages/Event.css */
 .event-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    margin-left: 450px; /* Space for the filter panel */
-  }
-  
-  h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
+  padding: 20px;
+  margin-left: 450px;
+}
 
-  .header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .search-bar {
-    margin-bottom: 0px;
-    display: flex;
-    justify-content: center;
-    padding-right: 100px;
-  }
-  
-  .search-bar input {
-    padding: 10px;
-    font-size: 16px;
-    width: 100%;
-    max-width: 500px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .event-row {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .event-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    width: 180px; /* Make the card slightly larger */
-    height: 200px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .event-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;  /* Increase the icon size */
-    height: 80px; /* Increase the icon size */
-    background-color: #4CAF50; /* Customize color */
-    border-radius: 50%;
-    margin-bottom: 10px;
-    font-size: 36px; /* Increase icon size */
-  }
-  
-  .event-title {
-    font-size: 16px;
-    text-align: center;
-    color: #333;
-  }
-  
-  h2 {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.event-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap; /* Ensures cards wrap if they don't fit in a row */
+}
+
+.event-card {
+  text-decoration: none;
+  color: #4b4b4b;
+  width: 200px; /* Fixed width for all cards */
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  overflow: hidden; /* Prevents content from overflowing the card */
+}
+
+.event-card:hover {
+  transform: scale(1.05);
+}
+
+.event-image-container {
+  width: 100%;
+  height: 150px; /* Fixed height for all images */
+  overflow: hidden;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.event-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures images cover the container without distortion */
+}
+
+.event-title {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #5a2d82;
+  padding: 10px;
+}

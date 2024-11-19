@@ -22,6 +22,7 @@ body {
   justify-content: center;
   background: linear-gradient(135deg, #6b238e, #a352a3);
   color: #ffffff;
+  width: 60%;
 }
 
 .brand-title {

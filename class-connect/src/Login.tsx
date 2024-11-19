@@ -6,10 +6,10 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     // Validate username and password
     if (username === "test-user" && password === "jellybeans123") {
@@ -22,7 +22,9 @@ const Login: React.FC = () => {
   return (
     <div className="login-container">
       <div className="login-left">
-        <h1 className="brand-title">Class Connect</h1>
+        <img
+          src={"/loginImage.png"}
+        />
       </div>
       <div className="login-right">
         <h2 className="login-title">Log In</h2>

@@ -1,27 +1,17 @@
 // src/pages/UpcomingEvents.tsx
-import React, { ReactNode, useEffect, useRef, useState } from "react";
-import { FaSpa, FaDumbbell, FaPizzaSlice, FaRunning } from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
+import { Event, Pair } from "./types";
+import {
+  FaSpa,
+  FaDumbbell,
+  FaPizzaSlice,
+  FaRunning,
+  FaUser,
+} from "react-icons/fa";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./MyCalendar.css";
 
-type Pair = {
-  name: string;
-  age: number;
-  gender: string;
-  hobbies: string[];
-};
-
-type Event = {
-  id: number;
-  title: string;
-  icon: ReactNode;
-  date: string;
-  startTime: string;
-  endTime: string;
-  paired: boolean;
-  pair?: Pair;
-};
 const signedUpEvents: Event[] = [
   {
     id: 1,
@@ -30,7 +20,7 @@ const signedUpEvents: Event[] = [
     date: "2024-11-26",
     startTime: "8:00 AM",
     endTime: "9:00 AM",
-    paired: true,
+    location: "57 Harvard Ave, Boston, MA",
     pair: {
       name: "Alex Johnson",
       gender: "Male",
@@ -45,7 +35,7 @@ const signedUpEvents: Event[] = [
     date: "2024-11-16",
     startTime: "10:00 AM",
     endTime: "11:00 AM",
-    paired: false,
+    location: "75 Commonwealth Ave, Boston, MA",
   },
   {
     id: 3,
@@ -54,7 +44,7 @@ const signedUpEvents: Event[] = [
     date: "2024-12-01",
     startTime: "11:30 AM",
     endTime: "12:30 PM",
-    paired: true,
+    location: "100 Boylston St, Boston, MA",
     pair: {
       name: "Sarah Lee",
       gender: "Female",
@@ -69,7 +59,7 @@ const signedUpEvents: Event[] = [
     date: "2024-11-29",
     startTime: "2:00 PM",
     endTime: "4:00 PM",
-    paired: false,
+    location: "50 Leon St, Boston, MA",
   },
   {
     id: 5,
@@ -78,7 +68,7 @@ const signedUpEvents: Event[] = [
     date: "2024-11-29",
     startTime: "5:00 PM",
     endTime: "6:00 PM",
-    paired: true,
+    location: "20 Park Plaza, Boston, MA",
     pair: {
       name: "Daniel Kim",
       gender: "Male",
@@ -93,7 +83,7 @@ const signedUpEvents: Event[] = [
     date: "2024-11-18",
     startTime: "7:00 PM",
     endTime: "8:00 PM",
-    paired: false,
+    location: "140 Clarendon St, Boston, MA",
   },
   {
     id: 7,
@@ -102,7 +92,7 @@ const signedUpEvents: Event[] = [
     date: "2024-11-21",
     startTime: "6:30 PM",
     endTime: "7:30 PM",
-    paired: true,
+    location: "33 Harrison Ave, Boston, MA",
     pair: {
       name: "Emily Chen",
       gender: "Female",
@@ -117,7 +107,7 @@ const signedUpEvents: Event[] = [
     date: "2024-11-22",
     startTime: "9:00 AM",
     endTime: "10:00 AM",
-    paired: false,
+    location: "12 Boylston St, Boston, MA",
   },
 ];
 
@@ -127,22 +117,27 @@ const MyCalendar = () => {
   const cardRef = useRef<HTMLDivElement | null>(null);
 
   const handleDateChange = (date) => {
-    const formattedDate = date.toISOString().split("T")[0];
-    if (
-      selectedDate &&
-      formattedDate === selectedDate.toISOString().split("T")[0]
-    ) {
+    if (selectedDate?.getTime() === date.getTime()) {
       setSelectedDate(null);
     } else {
       setSelectedDate(date);
+      setSelectedPair(null);
     }
-    setSelectedPair(null);
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
-    console.log(event.target);
-    console.log(cardRef.current);
-    if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
+  const formatDate = (date: Date) => date.toISOString().split("T")[0];
+
+  const eventsForSelectedDate = selectedDate
+    ? signedUpEvents.filter((event) => event.date === formatDate(selectedDate))
+    : signedUpEvents;
+
+  const isEventDate = (date: Date) => {
+    const formattedDate = formatDate(date);
+    return signedUpEvents.some((event) => event.date === formattedDate);
+  };
+
+  const handleClickOutside = (event) => {
+    if (cardRef.current && !cardRef.current.contains(event.target)) {
       setSelectedPair(null);
     }
   };
@@ -154,71 +149,86 @@ const MyCalendar = () => {
     };
   }, []);
 
-  const formatDate = (date) => date.toISOString().split("T")[0];
-
-  const eventsForSelectedDate = selectedDate
-    ? signedUpEvents.filter((event) => event.date === formatDate(selectedDate))
-    : signedUpEvents;
-
-  const isEventDate = (date) => {
-    const formattedDate = formatDate(date);
-    return signedUpEvents.some((event) => event.date === formattedDate);
-  };
-
   return (
     <div className="my-calendar-page">
-      <div className="content">
-        <Calendar
-          className="calendar-container"
-          onChange={handleDateChange}
-          value={selectedDate}
-          tileDisabled={({ date }) => !isEventDate(date)}
-        />
-        <div>
-          <h2>
-            Events for {selectedDate ? formatDate(selectedDate) : "X-X-2024"}
-          </h2>
-          <div className="events-container">
+      <div className="calendar-content">
+        <div className="calendar-section">
+          <h1 className="calendar-title">My Calendar</h1>
+          <Calendar
+            className="custom-calendar"
+            onChange={(event) => handleDateChange(event)}
+            value={selectedDate}
+            tileDisabled={({ date }) => !isEventDate(date)}
+          />
+        </div>
+        <div className="events-section">
+          <div className="events-list">
             {eventsForSelectedDate.length > 0 ? (
               eventsForSelectedDate.map((event) => (
                 <div key={event.id} className="event-card">
-                  <div className="event-circle"></div>
-                  <div className="event-info">
-                    <p className="event-time">
-                      {event.startTime} - {event.endTime}
+                  <div className="event-date-box">
+                    <p className="event-month">
+                      {new Date(event.date + "T00:00:00")
+                        .toLocaleString("en-US", { month: "short" })
+                        .toUpperCase()}
                     </p>
-                    <p className="event-title">{event.title}</p>
+                    <p className="event-day">
+                      {new Date(event.date + "T00:00:00").getDate()}
+                    </p>
                   </div>
-                  {event.paired && (
-                    <button
-                      className="view-pairing-button"
-                      onClick={() => event.pair && setSelectedPair(event?.pair)}
-                    >
-                      View Pairing
-                    </button>
-                  )}
+                  <div className="event-details">
+                    <p className="event-title">{event.title}</p>
+                    <p className="event-time">
+                      <strong>Time:</strong> {event.startTime} - {event.endTime}
+                    </p>
+                    <p className="event-location">
+                      <strong>Location:</strong> {event.location || "TBD"}
+                    </p>
+                  </div>
+                  <div className="event-actions">
+                    <button className="remove-button">Remove</button>
+                    {event.pair && (
+                      <button
+                        className="view-pairing-button"
+                        onClick={() =>
+                          event.pair && setSelectedPair(event.pair)
+                        }
+                      >
+                        View Pairing
+                      </button>
+                    )}
+                  </div>
                 </div>
               ))
             ) : (
               <p>No events for this date.</p>
             )}
           </div>
-          {selectedPair && (
-            <div>
-              <h2>Pairing</h2>
-              <div className="event-card" ref={cardRef}>
-                <h3 className="event-title">{selectedPair?.name}</h3>
-                <div className="pair-text">Age: {selectedPair?.age}</div>
-                <div className="pair-text">Gender: {selectedPair?.gender}</div>
-                <div className="pair-text">
-                  Hobbies: {selectedPair?.hobbies.join(", ")}
-                </div>
-                <button className="view-pairing-button">Chat</button>
-              </div>
-            </div>
-          )}
         </div>
-      </div>{" "}
+      </div>
+      {selectedPair && (
+        <div className="pairing-card" ref={cardRef}>
+          <div className="profile-icon">
+            <FaUser />
+          </div>
+          <h3>{selectedPair?.name}</h3>
+          <p>Age: {selectedPair?.age}</p>
+          <p>
+            Gender:{" "}
+            <span style={{ color: "#6b238e", fontWeight: "bold" }}>
+              {selectedPair?.gender}
+            </span>
+          </p>
+          <div className="hobbies">
+            {selectedPair?.hobbies.map((hobby, index) => (
+              <div key={index} className="hobby">
+                {hobby}
+              </div>
+            ))}
+          </div>
+          <button className="chat-button">Chat</button>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,0 +1,109 @@
+/* General styles */
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f8f4fc;
+}
+
+/* Main container */
+.login-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Left section (branding) */
+.login-left {
+  flex: 1;
+  background-color: #f8f4fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6b238e, #a352a3);
+  color: #ffffff;
+  width: 60%;
+}
+
+.brand-title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Right section (login form) */
+.login-right {
+  flex: 1;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.login-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #6b238e;
+  margin-bottom: 10px;
+}
+
+.login-subtitle {
+  font-size: 16px;
+  color: #444444;
+  margin-bottom: 30px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 350px;
+}
+
+.login-input {
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+.login-button {
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #6b238e;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #a352a3;
+}
+
+.login-footer {
+  font-size: 14px;
+  color: #444444;
+  margin-top: 20px;
+}
+
+.signup-link {
+  color: #6b238e;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+.login-error {
+  color: #d9534f;
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-align: left;
+}

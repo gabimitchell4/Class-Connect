@@ -4,7 +4,7 @@
 .filter-panel {
     position: fixed;
     top: 0;
-    left: 140px; /* Adjust this value based on the width of your navbar */
+    left: 100px; /* Adjust this value based on the width of your navbar */
     width: 250px;
     height: 100%;
     background-color: #f4f4f4;

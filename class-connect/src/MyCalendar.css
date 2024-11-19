@@ -1,115 +1,248 @@
-/* MyCalendar.css */
-
-/* Page layout */
 .my-calendar-page {
+  font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  margin-left: 120px; /* Space for the filter panel */
-}
-/* Content styling */
-.content {
-  display: flex;
-  flex: 1;
-  padding: 20px;
-  gap: 30px;
-}
-
-/* Events container */
-.events-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.events-container h2 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-/* Individual event card */
-.event-card {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 15px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
-  transition: background-color 0.2s;
+  padding: 20px;
+  padding-left: 100px;
+  padding-top: 100px;
+  gap: 20px;
 }
 
-.event-card:hover {
-  background-color: #f1f1f1;
-}
-
-/* Circle indicator for events */
-.event-circle {
-  width: 10px;
-  height: 10px;
-  background-color: #ff6b6b;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.event-info {
-  flex: 1;
-}
-
-.event-time {
-  font-size: 12px;
-  color: #888;
-}
-
-.event-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.pair-text {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 5px;
-  text-align: left;
+.calendar-content {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: flex-start;
   width: 100%;
 }
 
-.event-title {
-  font-size: 14px;
-  font-weight: bold;
+.calendar-section {
+  flex: 1;
+  max-width: 450px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-/* View pairing button */
-.view-pairing-button {
-  font-size: 12px;
-  color: #666;
-  background-color: #e0e0e0;
+.calendar-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #6b238e;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.custom-calendar {
+  width: 100%;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  font-size: 16px;
+}
+
+.custom-calendar .react-calendar__tile--now {
+  background: #e6ccf3;
+}
+
+.custom-calendar .react-calendar__tile--active {
+  background: #6b238e !important;
+  color: white !important;
+  border-radius: 8px;
+}
+
+.events-section {
+  flex: 2;
+  max-width: 700px;
+  background-color: #f9f1fc;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 400px; /* Set fixed height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 90%;
+  height: 100px;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border: 2px solid #d4bff9;
+  transition: transform 0.2s ease-in-out;
+  height: 90px;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.event-date-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fdf7ff;
+  border-radius: 10px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  margin-right: 20px;
+}
+
+.event-month {
+  font-size: 12px;
+  font-weight: bold;
+  color: #6b238e;
+  margin: 0px;
+}
+
+.event-day {
+  font-size: 18px;
+  font-weight: bold;
+  color: #6b238e;
+  margin: 0px;
+}
+
+.event-details {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.event-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #6b238e;
+  margin: 0px;
+  text-align: left;
+}
+
+.event-time,
+.event-location {
+  font-size: 14px;
+  color: #444;
+  margin: 0px;
+}
+
+.event-actions {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  gap: 10px;
+}
+
+.remove-button {
+  background: none;
+  border: 1px solid #6b238e;
+  color: #6b238e;
+  font-size: 14px;
+  padding: 8px 15px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: #f3e8ff;
+}
+
+.view-pairing-button {
+  background-color: #6b238e;
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .view-pairing-button:hover {
-  background-color: #ccc;
+  background-color: #8c3ab9;
 }
 
-.calendar-container {
-  max-width: 600px;
-  min-width: 500px;
-  height: 400px;
-  margin-top: 50px;
-  flex-direction: column;
-  background: linear-gradient(135deg, #ffffff, #f9f9f9);
-  border-radius: 15px;
+.pairing-card {
+  width: 175px;
+  height: 200px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  margin-left: 40px;
+}
+
+.pairing-card h3 {
+  font-size: 14px;
+  font-weight: bold;
+  color: #6b238e;
+  margin: 0;
+}
+
+.pairing-card p {
+  font-size: 12px;
+  color: #444;
+  margin: 5px 0;
+}
+
+.pairing-card .profile-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #6b238e;
+  display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  border: #e0e0e0;
+  margin: 0 auto 10px; /* Center icon horizontally */
+  font-size: 36px;
+  color: white;
+}
+
+.pairing-card .hobbies {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  overflow-x: auto;
+}
+
+.pairing-card .hobby {
+  background-color: #f3e8ff;
+  color: #6b238e;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.pairing-card .chat-button {
+  background-color: #6b238e;
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.pairing-card .chat-button:hover {
+  background-color: #8c3ab9;
 }

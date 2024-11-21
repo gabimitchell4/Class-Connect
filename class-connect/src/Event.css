@@ -60,6 +60,7 @@ h2 {
   text-decoration: none;
   color: #000;
   transition: transform 0.2s, box-shadow 0.2s;
+  width: 250px;
 }
 
 .event-card-2:hover {

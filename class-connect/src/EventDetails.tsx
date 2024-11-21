@@ -11,7 +11,7 @@ import "./EventDetails.css";
 
 const EventDetails: React.FC = () => {
   const location = useLocation();
-  const { title, icon } = location.state;
+  const { title, image } = location.state; // Access title and image from state
 
   const event = {
     rewardPoints: 100,
@@ -40,7 +40,10 @@ const EventDetails: React.FC = () => {
 
       <div className="main-content">
         <div className="left-section">
-          <div className="event-image-placeholder">{icon}</div>
+          {/* Display the image from the state */}
+          <div className="event-image-container">
+            <img src={image} alt={title} className="event-image" />
+          </div>
           <span className="distance">{event.distance}</span>
           <div className="attendees">
             <div className="attendee-placeholder">A</div>

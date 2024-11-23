@@ -84,9 +84,13 @@ const Rewards = () => {
           <div className="progress-bar">
             <div className="progress-filled-2" style={{ width: "100%" }}></div>
           </div>
-          <button className="learn-more-button" onClick={handleLearnMore}>
-            Learn More
-          </button>
+          <button
+            className={`learn-more-button ${points < 100 ? "disabled" : ""}`}
+            onClick={handleLearnMore}
+            disabled={points < 100}
+          >
+  Learn More
+</button>
         </div>
 
         <div className="reward-card locked">

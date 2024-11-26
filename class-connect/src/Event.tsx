@@ -11,6 +11,7 @@ import zumbaImage from "./assets/zumba.jpeg";
 import meditationImage from "./assets/meditation.jpeg";
 import strengthImage from "./assets/strength.jpeg";
 import cyclingImage from "./assets/spin.jpeg";
+import { FaUser } from "react-icons/fa";
 
 const events = [
   {
@@ -84,13 +85,20 @@ const Event: React.FC = () => {
 
       <div className="header">
         <h1>Events</h1>
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search events..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+        <div style={{ display: "flex", flexDirection: "row", gap: "50px" }}>
+          <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Search events..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <div className="profile-icon">
+            <Link to="/profile">
+              <FaUser />
+            </Link>
+          </div>
         </div>
       </div>
       <h2>For You</h2>
@@ -103,7 +111,11 @@ const Event: React.FC = () => {
             state={{ title: event.title, image: event.image }}
           >
             <div className="event-image-container">
-              <img src={event.image} alt={event.title} className="event-image" />
+              <img
+                src={event.image}
+                alt={event.title}
+                className="event-image"
+              />
               <span className="event-distance">{event.distance}</span>
             </div>
             <div className="event-details">
@@ -130,7 +142,11 @@ const Event: React.FC = () => {
             state={{ title: event.title, image: event.image }}
           >
             <div className="event-image-container">
-              <img src={event.image} alt={event.title} className="event-image" />
+              <img
+                src={event.image}
+                alt={event.title}
+                className="event-image"
+              />
               <span className="event-distance">{event.distance}</span>
             </div>
             <div className="event-details">

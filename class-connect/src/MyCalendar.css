@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   padding-left: 80px;
-  padding-top: 100px;
+  padding-top: 120px;
   gap: 40px;
 }
 
@@ -245,4 +245,21 @@
 
 .pairing-card .chat-button:hover {
   background-color: #8c3ab9;
+}
+
+.my-calendar-page .profile-icon {
+  width: 50px; /* Matching width and height for a circle */
+  height: 50px;
+  border-radius: 50%; /* Makes the element circular */
+  display: flex; /* Center contents inside the circle */
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 10px; /* Center the icon horizontally and add bottom margin */
+  font-size: 24px; /* Proper font size for content inside */
+  background-color: #6b238e;
+  color: #ffffff !important;
+}
+
+.profile-icon svg {
+  fill: white;
 }

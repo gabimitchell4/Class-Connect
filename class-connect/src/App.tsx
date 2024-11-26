@@ -10,6 +10,7 @@ import Rewards from "./Rewards.tsx";
 import NavBar from "./NavBar.tsx";
 import EventDetails from "./EventDetails.tsx";
 import MyCalendar from "./MyCalendar.tsx";
+import ProfilePage from "./ProfilePage.tsx";
 
 const App: React.FC = () => {
   const location = useLocation(); // Hook to get the current location
@@ -30,6 +31,7 @@ const App: React.FC = () => {
         <Route path="/social" element={<Social />} />
         <Route path="/upcoming-events" element={<MyCalendar />} />
         <Route path="/rewards" element={<Rewards />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </>
   );

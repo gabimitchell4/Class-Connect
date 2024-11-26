@@ -11,6 +11,7 @@ import {
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./MyCalendar.css";
+import { Link } from "react-router-dom";
 
 const signedUpEvents: Event[] = [
   {
@@ -151,6 +152,20 @@ const MyCalendar = () => {
 
   return (
     <div className="my-calendar-page">
+      <div
+        style={{
+          position: "absolute", // Ensure it's positioned relative to the parent container
+          top: "30px", // 10px from the top
+          right: "50px", // 10px from the right
+        }}
+      >
+        <div className="profile-icon">
+          <Link to="/profile">
+            <FaUser />
+          </Link>
+        </div>{" "}
+      </div>
+
       <div className="calendar-content">
         <div className="calendar-section">
           <h1 className="calendar-title">My Calendar</h1>

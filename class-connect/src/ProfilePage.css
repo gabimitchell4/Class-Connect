@@ -1,0 +1,157 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f8f5fa;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-page {
+  padding: 40px;
+  height: 100vh;
+  position: relative; /* Ensure proper positioning */
+  left: 200px; /* Offset by 140px to the right */
+  top: 50px;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  width: 1000px;
+  border-radius: 16px;
+  padding: 40px;
+  gap: 70px; /* Space between profile and details */
+}
+
+/* Profile section (left) */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 25%; /* Adjust width of the profile section */
+}
+
+.profile-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #6b238e;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.profile-header h1 {
+  font-size: 36px;
+  color: #6b238e;
+  margin-bottom: 10px;
+}
+
+.profile-header h2 {
+  font-size: 24px;
+  color: #444;
+}
+
+.edit-photo-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 2px solid #6b238e;
+  color: #6b238e;
+  background: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.edit-photo-button:hover {
+  background-color: #f3e8ff;
+}
+
+/* User details and survey results section */
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  width: 50%; /* Adjust width of the details section */
+  gap: 30px;
+}
+
+/* Field styling */
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.field label {
+  font-size: 16px;
+  color: #6b238e;
+  margin-bottom: 8px;
+}
+
+.field input {
+  border: 1px solid #d4bff9;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.password-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.show-button {
+  padding: 10px 15px;
+  border: 1px solid #6b238e;
+  background: none;
+  color: #6b238e;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 70px;
+}
+
+.show-button:hover {
+  background-color: #f3e8ff;
+}
+
+/* Survey results styling */
+.survey-results {
+  background-color: #fff7e6;
+  padding: 20px;
+  border-radius: 12px;
+  height: 200px;
+}
+
+.survey-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.survey-header h3 {
+  font-size: 20px;
+  color: #6b238e;
+  margin: 0;
+}
+
+.survey-content p {
+  font-size: 16px;
+  margin: 5px 0;
+  padding-top: 5px;
+}
+
+.hobby-tag {
+  display: inline-block;
+  background-color: #f3e8ff;
+  color: #6b238e;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-right: 10px;
+}

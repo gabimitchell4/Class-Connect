@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { FaAward } from "react-icons/fa"; // Add icon
+import { FaAward, FaUser } from "react-icons/fa"; // Add icon
 import "./Rewards.css";
-import target from './assets/target.png';
-import amazon from './assets/amazon.png';
-import painting from './assets/painting.png';
-import yoga from './assets/yoga.png';
+import target from "./assets/target.png";
+import amazon from "./assets/amazon.png";
+import painting from "./assets/painting.png";
+import yoga from "./assets/yoga.png";
+import { Link } from "react-router-dom";
 
 const Rewards = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -31,8 +32,15 @@ const Rewards = () => {
       {/* Header */}
       <div className="header">
         <h1>Rewards</h1>
-        <div className="search-bar">
-          <input type="text" placeholder="Search" />
+        <div style={{ display: "flex", flexDirection: "row", gap: "50px" }}>
+          <div className="search-bar">
+            <input type="text" placeholder="Search" />
+          </div>
+          <div className="profile-icon">
+            <Link to="/profile">
+              <FaUser />
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -89,8 +97,8 @@ const Rewards = () => {
             onClick={handleLearnMore}
             disabled={points < 100}
           >
-  Learn More
-</button>
+            Learn More
+          </button>
         </div>
 
         <div className="reward-card locked">

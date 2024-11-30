@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
   FaMapMarkerAlt,
@@ -11,7 +11,10 @@ import "./EventDetails.css";
 
 const EventDetails: React.FC = () => {
   const location = useLocation();
-  const { title, image } = location.state; // Access title and image from state
+  const { title, image } = location.state;
+
+  const [showModal, setShowModal] = useState<boolean>(false); // Manage modal visibility
+  const [modalStep, setModalStep] = useState<number>(0); // Track modal steps for popup flow
 
   const event = {
     rewardPoints: 100,
@@ -31,16 +34,32 @@ const EventDetails: React.FC = () => {
     },
   };
 
+  const handleInterestedClick = () => {
+    setShowModal(true);
+    setModalStep(1);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setModalStep(0);
+  };
+
+  const nextModalStep = () => {
+    setModalStep((prevStep) => prevStep + 1);
+  };
+
   return (
-    <div className="event-details">
+    <div className="event-page">
+      {/* Header Section */}
       <div className="header">
-        <h1>{title}</h1>
+        <h1 className="event-title">{title}</h1>
         <div className="reward-points">{event.rewardPoints} Reward Points</div>
       </div>
 
-      <div className="main-content">
+      {/* Content Section */}
+      <div className="content">
+        {/* Left Section */}
         <div className="left-section">
-          {/* Display the image from the state */}
           <div className="event-image-container">
             <img src={image} alt={title} className="event-image" />
           </div>
@@ -51,9 +70,12 @@ const EventDetails: React.FC = () => {
             <div className="attendee-placeholder">C</div>
             <span>{event.attendees}</span>
           </div>
-          <p className="pairing-note">{event.pairingNote}</p>
+          <p className="pairing-note">
+            <strong>NOTE:</strong> {event.pairingNote}
+          </p>
         </div>
 
+        {/* Right Section */}
         <div className="right-section">
           <div className="event-info">
             <p>
@@ -78,7 +100,9 @@ const EventDetails: React.FC = () => {
             <p>{event.description}</p>
           </div>
 
-          <button className="interested-button">I'm Interested</button>
+          <button className="interested-button" onClick={handleInterestedClick}>
+            I'm Interested
+          </button>
 
           <div className="organizer">
             <img
@@ -86,29 +110,71 @@ const EventDetails: React.FC = () => {
               alt={event.organizer.name}
               className="organizer-logo"
             />
-            <span>{event.organizer.name}</span>
-            <button className="learn-more-button">Learn More</button>
-          </div>
-        </div>
-
-        <div className="related-activities">
-          <h2>Related Activities</h2>
-          <div className="activity-cards">
-            <div className="card">
-              <span>Activity 1</span>
-              <span>0.5 miles away</span>
-            </div>
-            <div className="card">
-              <span>Activity 2</span>
-              <span>1 mile away</span>
-            </div>
-            <div className="card">
-              <span>Activity 3</span>
-              <span>1.2 miles away</span>
+            <div className="organizer-details">
+              <span>{event.organizer.name}</span>
+              <button className="learn-more-button">Learn More</button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            {modalStep === 1 && (
+              <>
+                <h2>Interested In Pairing Up?</h2>
+                <p>Would you like to pair up with another attendee?</p>
+                <button className="popup-button" onClick={nextModalStep}>
+                  Yes
+                </button>
+                <button className="popup-button" onClick={nextModalStep}>
+                  No
+                </button>
+              </>
+            )}
+            {modalStep === 2 && (
+              <>
+                <h2>Tool Tip</h2>
+                <p>
+                  Our pairing system will pair you up with someone who is also
+                  attending the class and matches the preferences indicated on
+                  your survey.
+                </p>
+                <button className="popup-button" onClick={nextModalStep}>
+                  Continue
+                </button>
+              </>
+            )}
+            {modalStep === 3 && (
+              <>
+                <h2>You’re All Set!</h2>
+                <p>You can view event details in your “My Calendar” tab.</p>
+                <button className="popup-button" onClick={nextModalStep}>
+                  View Countdown
+                </button>
+              </>
+            )}
+            {modalStep === 4 && (
+              <>
+                <h2>You’re All Set!</h2>
+                <div className="countdown">
+                  <p>Days : Hours : Minutes</p>
+                  <p>01 : 03 : 15</p>
+                </div>
+                <p>
+                  Pairings will drop @ 7:00 AM on {event.date} and can be viewed
+                  in the “My Calendar” tab.
+                </p>
+              </>
+            )}
+            <button className="close-modal" onClick={closeModal}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

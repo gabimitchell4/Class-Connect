@@ -1,58 +1,105 @@
-/* src/components/Filter.css */
-
 /* Style for the filter panel */
 .filter-panel {
-    position: fixed;
+  position: fixed;
     top: 0;
     left: 100px; /* Adjust this value based on the width of your navbar */
     width: 250px;
     height: 100%;
-    background-color: #f4f4f4;
     padding: 20px;
     border-left: 1px solid #ccc;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
-  }
-  
-  .filter-panel h2 {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .filter-item {
-    margin-bottom: 20px;
-  }
-  
-  .filter-item label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
-  }
-  
-  .filter-item input[type="range"],
-  .filter-item select {
-    width: 100%;
-  }
-  
-  .filter-item span {
-    font-size: 12px;
-    margin-top: 5px;
-    display: block;
-  }
-  
-  .filter-item select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-  }
-  
-  .filter-item input[type="range"] {
-    width: 100%;
-    margin-top: 5px;
-  }
-  
-  .filter-item input[type="range"]::-webkit-slider-thumb {
-    background-color: #4CAF50;
-  }
-  
+}
+
+.filter-panel h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.filter-item {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-item label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #333333;
+}
+
+.filter-item input[type="range"],
+.filter-item select {
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  margin-top: 5px;
+}
+
+.filter-item input[type="range"] {
+  -webkit-appearance: none;
+  height: 5px;
+  background: #ddd;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.filter-item input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: #6a0dad;
+  cursor: pointer;
+}
+
+.filter-item span {
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: right;
+  color: #555;
+}
+
+.filter-item select {
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #d0d0d0;
+  border-radius: 5px;
+  background: #f8f8f8;
+}
+
+.filter-item input[type="checkbox"] {
+  margin-right: 10px;
+  accent-color: #6a0dad;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.filter-buttons button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filter-buttons button.clear {
+  background-color: #f5f5f5;
+  color: #6a0dad;
+}
+
+.filter-buttons button.save {
+  background-color: #6a0dad;
+  color: #ffffff;
+}

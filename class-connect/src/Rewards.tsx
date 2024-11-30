@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaAward, FaUser } from "react-icons/fa"; // Add icon
+import { FaAward, FaUser } from "react-icons/fa";
 import "./Rewards.css";
 import target from "./assets/target.png";
 import amazon from "./assets/amazon.png";
@@ -8,23 +8,32 @@ import yoga from "./assets/yoga.png";
 import { Link } from "react-router-dom";
 
 const Rewards = () => {
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false); // First popup
+  const [showRedeemPopup, setShowRedeemPopup] = useState(false); // Second popup
   const [points, setPoints] = useState(100); // Points state
+  const [rewardCode, setRewardCode] = useState(""); // Reward code state
 
   const handleLearnMore = () => {
-    setShowPopup(true);
+    setShowPopup(true); // Show first popup
   };
 
   const handleClosePopup = () => {
-    setShowPopup(false);
+    setShowPopup(false); // Close the first popup
   };
 
   const handleRedeem = () => {
     if (points >= 100) {
-      setPoints(points - 100);
+      setPoints(points - 100); // Deduct points
+      setRewardCode("mih6otKx"); // Set the reward code
+      setShowPopup(false); // Close the first popup
+      setShowRedeemPopup(true); // Open the second popup
     } else {
       alert("Not enough points to redeem!");
     }
+  };
+
+  const handleCloseRedeemPopup = () => {
+    setShowRedeemPopup(false); // Close the second popup
   };
 
   return (
@@ -48,7 +57,7 @@ const Rewards = () => {
       <div className="points-events-container">
         {/* My Points */}
         <div className="points-card">
-          <FaAward className="rewards-icon" /> {/* Icon for rewards */}
+          <FaAward className="rewards-icon" />
           <h2>{points} POINTS</h2>
           <div className="progress-container">
             <div className="progress-bar-dots">
@@ -132,7 +141,7 @@ const Rewards = () => {
         </div>
       </div>
 
-      {/* Popup */}
+      {/* First Popup */}
       {showPopup && (
         <div className="popup-container">
           <div className="popup-content">
@@ -142,19 +151,30 @@ const Rewards = () => {
             <img src={target} alt="Target Gift Card" className="popup-image" />
             <h3>$5 Target Gift Card</h3>
             <p>
-              Hit “Redeem” to get the code. Can be utilized for in-store and
-              online purchases. A copy of the code will be sent to the email
-              address associated with this account.
+              Hit “Redeem” to confirm your reward. Once confirmed, you'll
+              receive your unique reward code.
             </p>
-            <button
-              className="redeem-button"
-              onClick={() => {
-                handleRedeem();
-                handleClosePopup();
-              }}
-            >
+            <button className="redeem-button" onClick={handleRedeem}>
               Redeem
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Second Popup */}
+      {showRedeemPopup && (
+        <div className="popup-container">
+          <div className="popup-content">
+            <button className="close-popup" onClick={handleCloseRedeemPopup}>
+              ✕
+            </button>
+            <img src={target} alt="Target Gift Card" className="popup-image" />
+            <h3>Congratulations!</h3>
+            <p>
+              Use the code below to access the reward. This can be used for
+              in-store or online purchases.
+            </p>
+            <div className="reward-code">{rewardCode}</div>
           </div>
         </div>
       )}

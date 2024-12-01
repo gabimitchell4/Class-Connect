@@ -122,56 +122,56 @@ const EventDetails: React.FC = () => {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            {modalStep === 1 && (
-              <>
-                <h2>Interested In Pairing Up?</h2>
-                <p>Would you like to pair up with another attendee?</p>
-                <button className="popup-button" onClick={nextModalStep}>
-                  Yes
-                </button>
-                <button className="popup-button" onClick={nextModalStep}>
-                  No
-                </button>
-              </>
-            )}
-            {modalStep === 2 && (
-              <>
-                <h2>Tool Tip</h2>
-                <p>
-                  Our pairing system will pair you up with someone who is also
-                  attending the class and matches the preferences indicated on
-                  your survey.
-                </p>
-                <button className="popup-button" onClick={nextModalStep}>
-                  Continue
-                </button>
-              </>
-            )}
-            {modalStep === 3 && (
-              <>
-                <h2>You’re All Set!</h2>
-                <p>You can view event details in your “My Calendar” tab.</p>
-                <button className="popup-button" onClick={nextModalStep}>
-                  View Countdown
-                </button>
-              </>
-            )}
-            {modalStep === 4 && (
-              <>
-                <h2>You’re All Set!</h2>
-                <div className="countdown">
-                  <p>Days : Hours : Minutes</p>
-                  <p>01 : 03 : 15</p>
-                </div>
-                <p>
-                  Pairings will drop @ 7:00 AM on {event.date} and can be viewed
-                  in the “My Calendar” tab.
-                </p>
-              </>
-            )}
-            <button className="close-modal" onClick={closeModal}>
-              Close
-            </button>
+          {modalStep === 1 && (
+  <>
+    <h2>Interested In Pairing Up?</h2>
+    <p>Would you like to pair up with another attendee?</p>
+    <button className="popup-button" onClick={nextModalStep}>
+      Yes
+    </button>
+    <button className="popup-button" onClick={nextModalStep}>
+      No
+    </button>
+  </>
+)}
+{modalStep === 2 && (
+  <>
+    <h2>Tool Tip</h2>
+    <p>
+      Our pairing system will pair you up with someone who is also attending
+      the class and matches the preferences indicated on your survey.
+    </p>
+    <button className="popup-button" onClick={nextModalStep}>
+      Continue
+    </button>
+  </>
+)}
+{modalStep === 3 && (
+  <>
+    <h2>You’re All Set!</h2>
+    <p>You can view event details in your “My Calendar” tab.</p>
+    <button className="popup-button" onClick={nextModalStep}>
+      View Countdown
+    </button>
+  </>
+)}
+{modalStep === 4 && (
+  <>
+    <h2>You’re All Set!</h2>
+    <div className="countdown">
+      <p>Days : Hours : Minutes</p>
+      <p>01 : 03 : 15</p>
+    </div>
+    <p>
+      Pairings will drop @ 7:00 AM on {event.date} and can be viewed in the
+      “My Calendar” tab.
+    </p>
+  </>
+)}
+<button className="close-modal" onClick={closeModal}>
+  ✕
+</button>
+
           </div>
         </div>
       )}

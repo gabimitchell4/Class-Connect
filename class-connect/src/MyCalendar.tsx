@@ -1,4 +1,4 @@
-// src/pages/UpcomingEvents.tsx
+// src/pages/MyCalendar.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { Event, Pair } from "./types";
 import {
@@ -12,6 +12,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./MyCalendar.css";
 import { Link } from "react-router-dom";
+import ChatDrawer from "./ChatDrawer.tsx";
 
 const signedUpEvents: Event[] = [
   {
@@ -111,6 +112,12 @@ const signedUpEvents: Event[] = [
     location: "12 Boylston St, Boston, MA",
   },
 ];
+const samplePair: Pair = {
+  name: "Alex Johnson",
+  age: 31,
+  gender: "",
+  hobbies: [],
+};
 
 const MyCalendar = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -142,6 +149,7 @@ const MyCalendar = () => {
       setSelectedPair(null);
     }
   };
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -151,100 +159,110 @@ const MyCalendar = () => {
   }, []);
 
   return (
-    <div className="my-calendar-page">
-      <div
-        style={{
-          position: "absolute", // Ensure it's positioned relative to the parent container
-          top: "30px", // 10px from the top
-          right: "50px", // 10px from the right
-        }}
-      >
-        <div className="profile-icon">
-          <Link to="/profile">
-            <FaUser />
-          </Link>
-        </div>{" "}
-      </div>
-
-      <div className="calendar-content">
-        <div className="calendar-section">
-          <h1 className="calendar-title">My Calendar</h1>
-          <Calendar
-            className="custom-calendar"
-            onChange={(event) => handleDateChange(event)}
-            value={selectedDate}
-            tileDisabled={({ date }) => !isEventDate(date)}
-          />
-        </div>
-        <div className="events-section">
-          <div className="events-list">
-            {eventsForSelectedDate.length > 0 ? (
-              eventsForSelectedDate.map((event) => (
-                <div key={event.id} className="event-card">
-                  <div className="event-date-box">
-                    <p className="event-month">
-                      {new Date(event.date + "T00:00:00")
-                        .toLocaleString("en-US", { month: "short" })
-                        .toUpperCase()}
-                    </p>
-                    <p className="event-day">
-                      {new Date(event.date + "T00:00:00").getDate()}
-                    </p>
-                  </div>
-                  <div className="event-details">
-                    <p className="event-title">{event.title}</p>
-                    <p className="event-time">
-                      <strong>Time:</strong> {event.startTime} - {event.endTime}
-                    </p>
-                    <p className="event-location">
-                      <strong>Location:</strong> {event.location || "TBD"}
-                    </p>
-                  </div>
-                  <div className="event-actions">
-                    <button className="remove-button">Remove</button>
-                    {event.pair && (
-                      <button
-                        className="view-pairing-button"
-                        onClick={() =>
-                          event.pair && setSelectedPair(event.pair)
-                        }
-                      >
-                        View Pairing
-                      </button>
-                    )}
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p>No events for this date.</p>
-            )}
-          </div>
-        </div>
-      </div>
-      {selectedPair && (
-        <div className="pairing-card" ref={cardRef}>
+    <>
+      <div className="my-calendar-page">
+        <div
+          style={{
+            position: "absolute", // Ensure it's positioned relative to the parent container
+            top: "30px", // 10px from the top
+            right: "50px", // 10px from the right
+          }}
+        >
           <div className="profile-icon">
-            <FaUser />
-          </div>
-          <h3>{selectedPair?.name}</h3>
-          <p>Age: {selectedPair?.age}</p>
-          <p>
-            Gender:{" "}
-            <span style={{ color: "#6b238e", fontWeight: "bold" }}>
-              {selectedPair?.gender}
-            </span>
-          </p>
-          <div className="hobbies">
-            {selectedPair?.hobbies.map((hobby, index) => (
-              <div key={index} className="hobby">
-                {hobby}
-              </div>
-            ))}
-          </div>
-          <button className="chat-button">Chat</button>
+            <Link to="/profile">
+              <FaUser />
+            </Link>
+          </div>{" "}
         </div>
-      )}
-    </div>
+
+        <div className="calendar-content">
+          <div className="calendar-section">
+            <h1 className="calendar-title">My Calendar</h1>
+            <Calendar
+              className="custom-calendar"
+              onChange={(event) => handleDateChange(event)}
+              value={selectedDate}
+              tileDisabled={({ date }) => !isEventDate(date)}
+            />
+          </div>
+          <div className="events-section">
+            <div className="events-list">
+              {eventsForSelectedDate.length > 0 ? (
+                eventsForSelectedDate.map((event) => (
+                  <div key={event.id} className="event-card">
+                    <div className="event-date-box">
+                      <p className="event-month">
+                        {new Date(event.date + "T00:00:00")
+                          .toLocaleString("en-US", { month: "short" })
+                          .toUpperCase()}
+                      </p>
+                      <p className="event-day">
+                        {new Date(event.date + "T00:00:00").getDate()}
+                      </p>
+                    </div>
+                    <div className="event-details">
+                      <p className="event-title">{event.title}</p>
+                      <p className="event-time">
+                        <strong>Time:</strong> {event.startTime} -{" "}
+                        {event.endTime}
+                      </p>
+                      <p className="event-location">
+                        <strong>Location:</strong> {event.location || "TBD"}
+                      </p>
+                    </div>
+                    <div className="event-actions">
+                      <button className="remove-button">Remove</button>
+                      {event.pair && (
+                        <button
+                          className="view-pairing-button"
+                          onClick={() =>
+                            event.pair && setSelectedPair(event.pair)
+                          }
+                        >
+                          View Pairing
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>No events for this date.</p>
+              )}
+            </div>
+          </div>
+        </div>
+        {selectedPair && (
+          <div className="pairing-card" ref={cardRef}>
+            <div className="profile-icon">
+              <FaUser />
+            </div>
+            <h3>{selectedPair?.name}</h3>
+            <p>Age: {selectedPair?.age}</p>
+            <p>
+              Gender:{" "}
+              <span style={{ color: "#6b238e", fontWeight: "bold" }}>
+                {selectedPair?.gender}
+              </span>
+            </p>
+            <div className="hobbies">
+              {selectedPair?.hobbies.map((hobby, index) => (
+                <div key={index} className="hobby">
+                  {hobby}
+                </div>
+              ))}
+            </div>
+            <button className="chat-button" onClick={() => setIsChatOpen(true)}>
+              Chat
+            </button>
+          </div>
+        )}
+      </div>
+      <ChatDrawer
+        isOpen={isChatOpen}
+        onClose={() => setIsChatOpen(false)}
+        pair={samplePair}
+      />
+    </>
   );
 };
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Filter.css';
-import MyCalendar from './MyCalendar.tsx';
 
 interface FilterProps {
   onSave: (filters: {
